@@ -38,7 +38,7 @@ struct RecipeView: View {
                 VStack(alignment: .leading, spacing: 30) {
                     if !recipe.category.isEmpty {
                         Text("Catégorie : \(recipe.category)")
-                            .background(Color(.yellow))
+                            .background(Color(.gray).opacity(0.2))
                             .clipShape(Capsule())
                     }
                     
@@ -59,6 +59,7 @@ struct RecipeView: View {
                             Text(recipe.directions)
                         }
                     }
+                
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
