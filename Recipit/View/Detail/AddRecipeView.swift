@@ -14,7 +14,7 @@ struct AddRecipeView: View {
     @State private var directions: String = ""
     @State private var navigationRecipe = false
     
-    //Recipe added
+    //Recipe added user default
     @State var numberRecipesAdded = UserDefaults.standard.integer(forKey: "addedRecipe")
     
     // Library option
@@ -22,10 +22,17 @@ struct AddRecipeView: View {
     @State private var filterIntensity = 0.5
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
+
+    // Saved pic to restore
+    @State private var savedPictures: [String] = UserDefaults.standard.object(forKey: "savedPictures") as? [String] ?? [String]()
     
+    // Function that loads the image
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
+        
+        savedPictures.append(saveImage(image: inputImage))
+        UserDefaults.standard.set(savedPictures, forKey: "savedPictures")
     }
 
 
@@ -63,7 +70,7 @@ struct AddRecipeView: View {
                           ZStack {
 
                               Text("Ajouter une image")
-                                  .foregroundColor(.black)
+                                  .foregroundColor(.gray)
                                   .font(.headline)
 
                               image?
@@ -94,7 +101,7 @@ struct AddRecipeView: View {
                             saveRecipe()
                             navigationRecipe = true
                         } label:{
-                            Label("Fait", systemImage: "checkmark")
+                            Label("Recette complète", systemImage: "checkmark")
                         }
                     }
                     .disabled(name.isEmpty)
@@ -132,7 +139,6 @@ extension AddRecipeView {
         UserDefaults.standard.set(directions, forKey: "\(numberRecipesAdded)directions")
         UserDefaults.standard.set(datePublished, forKey: "\(numberRecipesAdded)datePublished")
         UserDefaults.standard.set(selectedCategory.rawValue, forKey: "\(numberRecipesAdded)category")
-        UserDefaults.standard.set("", forKey: "\(numberRecipesAdded)url")
         
         print("Recipe saved")
         
@@ -140,7 +146,7 @@ extension AddRecipeView {
          
         numberRecipesAdded += 1
         
-        let recipe = Recipe(name: name, image: image, ingredients: ingredients, directions: directions, datePublished: datePublished, category: selectedCategory.rawValue, url: "")
+        let recipe = Recipe(name: name, image: image, ingredients: ingredients, directions: directions, datePublished: datePublished, category: selectedCategory.rawValue)
         recipeViewModel.addRecipe(recipe: recipe)
         
         print("Recipe added : \(numberRecipesAdded)")

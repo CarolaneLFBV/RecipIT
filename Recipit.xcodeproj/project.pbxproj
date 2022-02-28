@@ -26,6 +26,7 @@
 		928D3BDB27B52D98009A03C7 /* ShoppingListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D3BDA27B52D98009A03C7 /* ShoppingListModel.swift */; };
 		928D3BDD27B5302C009A03C7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D3BDC27B5302C009A03C7 /* ImagePicker.swift */; };
 		928D3BDF27B5304B009A03C7 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D3BDE27B5304B009A03C7 /* RecipeViewModel.swift */; };
+		92FCA7D027C38BE50010F716 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCA7CF27C38BE50010F716 /* ImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		928D3BDA27B52D98009A03C7 /* ShoppingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListModel.swift; sourceTree = "<group>"; };
 		928D3BDC27B5302C009A03C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		928D3BDE27B5304B009A03C7 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
+		92FCA7CF27C38BE50010F716 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				928D3BBD27B52C5D009A03C7 /* View */,
-				928D3BC927B52CDB009A03C7 /* Option */,
+				928D3BC927B52CDB009A03C7 /* Image */,
 				928D3BC827B52CD5009A03C7 /* Model */,
 				928D3BC727B52CCC009A03C7 /* ViewModel */,
 				928D3B9327B52C0E009A03C7 /* Assets.xcassets */,
@@ -176,12 +178,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		928D3BC927B52CDB009A03C7 /* Option */ = {
+		928D3BC927B52CDB009A03C7 /* Image */ = {
 			isa = PBXGroup;
 			children = (
 				928D3BDC27B5302C009A03C7 /* ImagePicker.swift */,
+				92FCA7CF27C38BE50010F716 /* ImageExtension.swift */,
 			);
-			path = Option;
+			path = Image;
 			sourceTree = "<group>";
 		};
 		928D3BCA27B52CEB009A03C7 /* Components */ = {
@@ -340,6 +343,7 @@
 				928D3BD327B52D22009A03C7 /* AddRecipeView.swift in Sources */,
 				928D3BC627B52C9C009A03C7 /* SettingsView.swift in Sources */,
 				928D3BC427B52C93009A03C7 /* ShoppingListView.swift in Sources */,
+				92FCA7D027C38BE50010F716 /* ImageExtension.swift in Sources */,
 				928D3BD527B52D4A009A03C7 /* RecipeCard.swift in Sources */,
 				928D3BD727B52D51009A03C7 /* RecipeList.swift in Sources */,
 				928D3BD927B52D8C009A03C7 /* RecipeModel.swift in Sources */,

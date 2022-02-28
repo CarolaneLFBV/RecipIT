@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct RecipeList: View {
+    @State var initialRecipes: [Recipe] = []
     @State var recipes: [Recipe]
     @State var showingFavorites = false
-    @State var didLoad = true
+    @State var firstLoad = true
     
     func restoreRecipe() {
-        var addedRecipe = UserDefaults.standard.integer(forKey: "addedRecipe")
+        let addedRecipe = UserDefaults.standard.integer(forKey: "addedRecipe")
         print("From restore: \(addedRecipe)")
+        let images = getImages(imageNames: UserDefaults.standard.object(forKey: "savedPictures") as? [String] ?? [String]())
         for i in 0..<addedRecipe {
-            recipes.append(Recipe(name: UserDefaults.standard.string(forKey: "\(i)name")!, image: Image("photo1"), ingredients: UserDefaults.standard.string(forKey: "\(i)ingredients")!, directions: UserDefaults.standard.string(forKey: "\(i)directions")!, datePublished: UserDefaults.standard.string(forKey: "\(i)datePublished")!, category: UserDefaults.standard.string(forKey: "\(i)category")!, url: UserDefaults.standard.string(forKey: "\(i)url")!))
+            recipes.append(Recipe(name: UserDefaults.standard.string(forKey: "\(i)name")!, image: Image(uiImage: images[i]!), ingredients: UserDefaults.standard.string(forKey: "\(i)ingredients")!, directions: UserDefaults.standard.string(forKey: "\(i)directions")!, datePublished: UserDefaults.standard.string(forKey: "\(i)datePublished")!, category: UserDefaults.standard.string(forKey: "\(i)category")!))
             print("Added \(addedRecipe) recipe")
         }
     }
@@ -34,7 +36,7 @@ struct RecipeList: View {
                 Text("Favoris")
             }
             
-            // LazyVGrid créer une grid vertical permettant de s'ajuster automatiquement en fonction du nombre de cartes qui se trouvent.
+            // LazyVGrid = vertical grid that adjusts depends on the number of items
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 160))], spacing: 15) {
                 ForEach(recipes) { recipe in
                     if !self.showingFavorites || recipe.isFavorite == true {
@@ -48,10 +50,12 @@ struct RecipeList: View {
         }
         .padding(.horizontal)
         .onAppear(perform: {
-            if didLoad {
-                restoreRecipe()
-                didLoad = false
+            if firstLoad {
+                initialRecipes = recipes
+                firstLoad = false
             }
+            recipes = initialRecipes
+            restoreRecipe()
             
             for i in 0..<recipes.count {
                 recipes[i].isFavorite = UserDefaults.standard.bool(forKey: "\(recipes[i].name)isFavorite")
