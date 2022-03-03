@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct RoundedCorner: Shape {
+
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
 struct RecipeView: View {
     @State var recipe: Recipe
     
@@ -14,60 +31,95 @@ struct RecipeView: View {
         recipe.isFavorite.toggle()
         UserDefaults.standard.set(recipe.isFavorite, forKey: "\(recipe.name)isFavorite")
     }
+    
 
     var body: some View {
         ScrollView {
-            recipe.image?
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 300)
-                .background(LinearGradient(gradient: Gradient(colors: [Color(.gray).opacity(0.3), Color(.gray)]), startPoint: UnitPoint.top, endPoint: .bottom))
-            
-            VStack(spacing: 30) {
-                Text(recipe.name)
-                    .font(.largeTitle.weight(.bold))
-                    .multilineTextAlignment(.center)
-
-                VStack(alignment: .leading, spacing: 20) {
-                    Button() {
-                        addToFavorites()
-                    } label:{
-                        Label(recipe.isFavorite ? "Retirer des favoris" : "Ajouter au favoris" , systemImage: recipe.isFavorite ? "star.fill" : "star")
+            VStack(spacing: 0){
+                ZStack() {
+                    recipe.image?
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 300)
+                        .background(LinearGradient(gradient: Gradient(colors: [Color(.gray).opacity(0.3), Color(.gray)]), startPoint: UnitPoint.top, endPoint: .bottom))
+                    
+                    VStack() {
+                        Spacer()
+                        Text(recipe.name)
+                            .frame(width: 350, height: 60)
+                            .padding()
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(20, corners: [.topLeft, .topRight])
+                            .font(.system(size: 25).bold())
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
                     }
+                }
+                
+                HStack() {
+                    VStack() {
+                        if !recipe.category.isEmpty {
+                            Text("\(recipe.category)")
+                                .font(.system(size: 20,
+                                              weight: .regular,
+                                              design: .default))
+                            }
+                        }
+                    
+                    VStack() {
+                        Button() {
+                            addToFavorites()
+                        } label:{
+                            /*recipe.isFavorite ? "Retirer des favoris" : "Ajouter au favoris" , */
+                            Label(recipe.isFavorite ? "Favoris" : "Favoris" , systemImage: recipe.isFavorite ? "star.fill" : "star")
+                                .foregroundColor(.orange)
+                                .font(.system(size: 20,
+                                              weight: .regular,
+                                              design: .default))
+                        }
+                    }
+                }
+                .frame(width: 350, height: 5)
+                .padding()
+                .background(.ultraThinMaterial)
+                .cornerRadius(15, corners: [.bottomRight, .bottomLeft])
+                .shadow(color: .black, radius: 15, x: 0, y: 12)
+                
+                
                 
                 VStack(alignment: .leading, spacing: 30) {
-                    if !recipe.category.isEmpty {
-                        Text("Catégorie : \(recipe.category)")
-                            .background(Color(.gray).opacity(0.2))
-                            .clipShape(Capsule())
-                    }
-                    
                     if !recipe.ingredients.isEmpty {
-                        VStack(alignment: .leading, spacing: 20) {
+                        VStack(alignment: .leading, spacing: 15) {
+                            Spacer()
+                                .frame(height: 20)
                             Text("Ingrédients")
                                 .font(.headline)
+                                .foregroundColor(.orange)
+        
                             
                             Text(recipe.ingredients)
                         }
                     }
                     
                     if !recipe.directions.isEmpty {
-                        VStack(alignment: .leading, spacing: 20) {
+                        VStack(alignment: .leading, spacing: 15) {
                             Text("Étapes")
                                 .font(.headline)
+                                .foregroundColor(.orange)
                             
                             Text(recipe.directions)
                         }
                     }
-                
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.horizontal)
+
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal)
-            }
+            //.background(Color.orange)
         }
         .navigationViewStyle(.stack)
         .ignoresSafeArea(.container, edges: .top)
+        
     }
 }
 

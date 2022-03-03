@@ -8,22 +8,27 @@
 import SwiftUI
 
 struct CategoriesView: View {
-    
     var body: some View {
         NavigationView {
             List {
-                ForEach(Category.allCases) { category in
+                (ForEach(Category.allCases) { category in
                     NavigationLink {
                         CategoryView(category: category)
                     } label: {
                         Text(category.rawValue)
                     }
-                }
+                })
+                
             }
-            .navigationTitle("Catégories ✅")
+                .navigationTitle("Catégories ✅")
+                
+                
         }
+        
         .navigationViewStyle(.stack)
     }
+    
+    
 }
 
 struct CategoriesView_Previews: PreviewProvider {

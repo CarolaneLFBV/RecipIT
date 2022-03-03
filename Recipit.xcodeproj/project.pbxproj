@@ -26,6 +26,7 @@
 		928D3BDB27B52D98009A03C7 /* ShoppingListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D3BDA27B52D98009A03C7 /* ShoppingListModel.swift */; };
 		928D3BDD27B5302C009A03C7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D3BDC27B5302C009A03C7 /* ImagePicker.swift */; };
 		928D3BDF27B5304B009A03C7 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928D3BDE27B5304B009A03C7 /* RecipeViewModel.swift */; };
+		92EC286827D002020056FFC1 /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EC286727D002020056FFC1 /* CustomSwitch.swift */; };
 		92FCA7D027C38BE50010F716 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FCA7CF27C38BE50010F716 /* ImageExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		928D3BDA27B52D98009A03C7 /* ShoppingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListModel.swift; sourceTree = "<group>"; };
 		928D3BDC27B5302C009A03C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		928D3BDE27B5304B009A03C7 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
+		92EC286727D002020056FFC1 /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
 		92FCA7CF27C38BE50010F716 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 				928D3BC727B52CCC009A03C7 /* ViewModel */,
 				928D3B9327B52C0E009A03C7 /* Assets.xcassets */,
 				928D3B9527B52C0E009A03C7 /* Preview Content */,
+				92EC286727D002020056FFC1 /* CustomSwitch.swift */,
 			);
 			path = Recipit;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				928D3BDD27B5302C009A03C7 /* ImagePicker.swift in Sources */,
 				928D3BC027B52C7E009A03C7 /* CategoriesView.swift in Sources */,
 				928D3B9027B52C0E009A03C7 /* RecipitApp.swift in Sources */,
+				92EC286827D002020056FFC1 /* CustomSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
