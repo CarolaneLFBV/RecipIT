@@ -12,10 +12,15 @@ struct NewRecipeView: View {
     @State private var showingAddRecipe = false
     var body: some View {
         NavigationView {
-            Button("Entrer une recette manuellement") {
+            Button("Créer une nouvelle recette") {
                 showingAddRecipe = true
             }
-                .navigationTitle("Nouvelle recette 🍴")
+            .padding()
+            .background(.orange)
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            
+            .navigationTitle("Nouvelle recette 🍴")
         }
         .navigationViewStyle(.stack)
         .sheet(isPresented: $showingAddRecipe) {

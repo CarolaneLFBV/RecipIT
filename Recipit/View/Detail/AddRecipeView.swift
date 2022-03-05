@@ -46,6 +46,7 @@ struct AddRecipeView: View {
                 Section(header: Text("Nom de la recette")) {
                     TextField("Recette", text: $name)
                 }
+                .font(.system(size: 13, weight: .bold))
                 
                 Section(header: Text("Catégorie")) {
                     Picker("Catégorie", selection: $selectedCategory) {
@@ -56,22 +57,25 @@ struct AddRecipeView: View {
                     }
                     .pickerStyle(.menu)
                 }
+                .font(.system(size: 13, weight: .bold))
                 
                 Section(header: Text("Ingrédient(s)")) {
                     TextEditor(text: $ingredients)
                 }
+                .font(.system(size: 13, weight: .bold))
                 
                 Section(header: Text("Étape(s)")) {
                     TextEditor(text: $directions)
                 }
+                .font(.system(size: 13, weight: .bold))
                 
                 Section (header: Text("Insertion d'image")) {
                     VStack {
                           ZStack {
 
                               Text("Ajouter une image")
-                                  .foregroundColor(.gray)
-                                  .font(.headline)
+                                  .foregroundColor(.orange)
+                                  .font(.system(size: 15, weight: .bold))
 
                               image?
                                   .resizable()
@@ -82,7 +86,9 @@ struct AddRecipeView: View {
                           }
                     }
                 }
+                .font(.system(size: 13, weight: .bold))
             }
+            
             .toolbar(content: {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button() {
@@ -105,6 +111,7 @@ struct AddRecipeView: View {
                         }
                     }
                     .disabled(name.isEmpty)
+                    
                 }
             })
             .navigationTitle("Nouvelle Recette 🍽")

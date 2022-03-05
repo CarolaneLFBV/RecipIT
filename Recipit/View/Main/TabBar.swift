@@ -19,10 +19,8 @@ struct TabBar: View {
     
     let icons = [
     "house",
-    "filemenu.and.selection",
     "plus",
     "bag",
-    "gear"
     ]
     
     var body: some View {
@@ -31,27 +29,14 @@ struct TabBar: View {
                 switch selectedIndex {
                 case 0:
                     HomeView()
-                
 
                 case 1:
-                    CategoriesView()
-
+                    NewRecipeView()
                     
                 case 2:
-                    NewRecipeView()
-
-                    
-                    
-                case 3:
                     ShoppingListView()
                  
-                    
-                    
-                case 4:
-                    SettingsView()
 
-                    
-                    
                 default:
                     HomeView()
                     
@@ -63,12 +48,12 @@ struct TabBar: View {
             
             Divider()
             HStack {
-                ForEach(0..<5, id: \.self) { number in
+                ForEach(0..<3, id: \.self) { number in
                     Spacer()
                     Button(action: {
                         self.selectedIndex = number
                     }, label: {
-                        if number == 2 {
+                        if number == 1 {
                             Image(systemName: icons[number])
                                 .font(.system(size: 25,
                                               weight: .regular,

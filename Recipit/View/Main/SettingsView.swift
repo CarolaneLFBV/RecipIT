@@ -11,10 +11,14 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                
-                Section(header: Text("Paramètres généraux")) {
-                    Text("Thème de l'application")
-                    Text("Mode Sombre")
+                Section(header: Text("Réseaux sociaux")) {
+                    
+                    Link("Site internet 🌐", destination: URL(string: " http://www.carolanelefebvre.com/")!)
+                        .foregroundColor(.black)
+               
+                    Link("Twitter 🐦", destination: URL(string: "https//www.twitter.com")!)
+                        .foregroundColor(.black)
+                    
                 }
                 
                 Section(header: Text("Informations application")) {

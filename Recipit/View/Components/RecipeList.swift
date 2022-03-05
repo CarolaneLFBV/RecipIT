@@ -29,7 +29,8 @@ struct RecipeList: View {
         VStack {
             HStack {
                 Text("\(recipes.count) \(recipes.count > 1 ? "recettes" : "recette")")
-                    .font(.headline.weight(.medium)).opacity(0.7)
+                    .font(.headline.weight(.bold)).opacity(0.7)
+                    .foregroundColor(.orange)
                 
                 Spacer()
             }
