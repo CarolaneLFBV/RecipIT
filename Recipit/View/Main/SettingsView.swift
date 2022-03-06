@@ -24,6 +24,12 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    .frame(width: 200, height: 10)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.orange)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                        
 
                     Button("Planifier une notification") {
                         let content = UNMutableNotificationContent()
@@ -40,6 +46,11 @@ struct SettingsView: View {
                         // add our notification request
                         UNUserNotificationCenter.current().add(request)
                     }
+                    .frame(width: 200, height: 10)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.orange)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
            
 
                 }
@@ -48,12 +59,12 @@ struct SettingsView: View {
                     Link("Site internet 🌐", destination: URL(string: "http://www.carolanelefebvre.com/")!)
                         .foregroundColor(.black)
                
-                    Link("Twitter 🐦", destination: URL(string: "https://www.twitter.com/")!)
+                    Link("Twitter 🐦", destination: URL(string: "https://twitter.com/Akiuie")!)
                         .foregroundColor(.black)
                 }
                 
                 Section(header: Text("Informations application")) {
-                    Text("Version de l'application : v.1.1.0")
+                    Text("Version de l'application : v.1.1.1")
                     Text("Développé par Carolane LEFEBVRE")
 
                 }

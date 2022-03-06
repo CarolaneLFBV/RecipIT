@@ -8,22 +8,11 @@
 import SwiftUI
 
 struct RecipeList: View {
-    @State var initialRecipes: [Recipe] = []
     @State var recipes: [Recipe]
     @State var showingFavorites = false
     @State var firstLoad = true
     
-    //restoreRecipe function - Userdefaults
-    func restoreRecipe() {
-        let addedRecipe = UserDefaults.standard.integer(forKey: "addedRecipe")
-        print("From restore: \(addedRecipe)")
-        let images = getImages(imageNames: UserDefaults.standard.object(forKey: "savedPictures") as? [String] ?? [String]())
-        for i in 0..<addedRecipe {
-            recipes.append(Recipe(name: UserDefaults.standard.string(forKey: "\(i)name")!, image: Image(uiImage: images[i]!), ingredients: UserDefaults.standard.string(forKey: "\(i)ingredients")!, directions: UserDefaults.standard.string(forKey: "\(i)directions")!, datePublished: UserDefaults.standard.string(forKey: "\(i)datePublished")!, category: UserDefaults.standard.string(forKey: "\(i)category")!))
-            print("Added \(addedRecipe) recipe")
-            //print("This is a test")
-        }
-    }
+    @EnvironmentObject var recipeViewModel: RecipeViewModel
     
     var body: some View {
         VStack {
@@ -54,11 +43,9 @@ struct RecipeList: View {
         .padding(.horizontal)
         .onAppear(perform: {
             if firstLoad {
-                initialRecipes = recipes
+                recipes = recipeViewModel.getRecipes()
                 firstLoad = false
             }
-            recipes = initialRecipes
-            restoreRecipe()
             
             for i in 0..<recipes.count {
                 recipes[i].isFavorite = UserDefaults.standard.bool(forKey: "\(recipes[i].name)isFavorite")

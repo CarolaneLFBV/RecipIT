@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct RecipITApp: App {
     @StateObject var recipeViewModel = RecipeViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

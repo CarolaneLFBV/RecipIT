@@ -22,6 +22,7 @@ struct AddRecipeView: View {
     @State private var filterIntensity = 0.5
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
+    @State private var currentImg: UIImage?
 
     // Saved pic to restore
     @State private var savedPictures: [String] = UserDefaults.standard.object(forKey: "savedPictures") as? [String] ?? [String]()
@@ -31,8 +32,7 @@ struct AddRecipeView: View {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
         
-        savedPictures.append(saveImage(image: inputImage))
-        UserDefaults.standard.set(savedPictures, forKey: "savedPictures")
+        currentImg = inputImage
     }
 
 
@@ -100,7 +100,7 @@ struct AddRecipeView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(isActive: $navigationRecipe) {
-                        RecipeView(recipe: recipeViewModel.recipes.sorted {$0.datePublished > $1.datePublished}[0])
+                        RecipeView(recipe: recipeViewModel.recipes.last!)
                             .navigationBarBackButtonHidden(true)
                     } label: {
                         Button() {
@@ -135,6 +135,11 @@ struct AddRecipeView_Previews: PreviewProvider {
 extension AddRecipeView {
     private func saveRecipe() {
         
+        guard let currentImg = currentImg else { return }
+        
+        savedPictures.append(saveImage(image: currentImg))
+        UserDefaults.standard.set(savedPictures, forKey: "savedPictures")
+        
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-mm-yyyy"
@@ -152,7 +157,6 @@ extension AddRecipeView {
         print("from save : \(numberRecipesAdded)")
          
         numberRecipesAdded += 1
-        
         let recipe = Recipe(name: name, image: image, ingredients: ingredients, directions: directions, datePublished: datePublished, category: selectedCategory.rawValue)
         recipeViewModel.addRecipe(recipe: recipe)
         
