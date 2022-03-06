@@ -6,19 +6,50 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct SettingsView: View {
+    @State private var notificationPush = false
+    
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Paramètres généraux")) {
+                    Button("Permission de notification") {
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                            if success {
+                                print("Accepted")
+                            } else if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
+
+                    Button("Planifier une notification") {
+                        let content = UNMutableNotificationContent()
+                        content.title = "Recip'IT"
+                        content.subtitle = "De délicieuses recettes vous attendent !"
+                        content.sound = UNNotificationSound.default
+
+                        // show this notification five seconds from now
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+
+                        // choose a random identifier
+                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+                        // add our notification request
+                        UNUserNotificationCenter.current().add(request)
+                    }
+           
+
+                }
+                
                 Section(header: Text("Réseaux sociaux")) {
-                    
-                    Link("Site internet 🌐", destination: URL(string: " http://www.carolanelefebvre.com/")!)
+                    Link("Site internet 🌐", destination: URL(string: "http://www.carolanelefebvre.com/")!)
                         .foregroundColor(.black)
                
-                    Link("Twitter 🐦", destination: URL(string: "https//www.twitter.com")!)
+                    Link("Twitter 🐦", destination: URL(string: "https://www.twitter.com/")!)
                         .foregroundColor(.black)
-                    
                 }
                 
                 Section(header: Text("Informations application")) {
