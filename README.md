@@ -16,8 +16,18 @@ There is also a category activity where the user can find their recipe depending
 ## More options
 This app also allows the user to naviguate through a shopping list where he can add or removed each item of a list. The list gets automatically updated.
 
-## Features need to be added
+# Features
+## ADDED
+- Notification Push
+
+## UPDATED
+- App's UI
+- SettingsView (links, notifications..)
+
+## REMOVED
+- Category 
+
+## NEED TO BE ADDED
 - Add a NutriScore Scan in the application
 - Launching Screen
-- Improve the data storage
 
