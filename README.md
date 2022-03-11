@@ -19,6 +19,7 @@ This app also allows the user to naviguate through a shopping list where he can 
 # Features
 ## ADDED
 - Notification Push
+- SettingsView (links, notifications..)
 
 ## UPDATED
 - App's UI
