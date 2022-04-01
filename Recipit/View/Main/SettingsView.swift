@@ -64,7 +64,7 @@ struct SettingsView: View {
                 }
                 
                 Section(header: Text("Informations application")) {
-                    Text("Version de l'application : v.1.1.0")
+                    Text("Version de l'application : v.1.1.3")
                     Text("Développé par Carolane LEFEBVRE")
 
                 }
