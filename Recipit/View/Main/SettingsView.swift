@@ -14,6 +14,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
+                // Permet d'ajouter une notification de l'application
                 Section(header: Text("Paramètres généraux")) {
                     Button("Permission de notification") {
                         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
@@ -55,6 +56,7 @@ struct SettingsView: View {
 
                 }
                 
+                // Section avec liens
                 Section(header: Text("Réseaux sociaux")) {
                     Link("Site internet 🌐", destination: URL(string: "http://www.carolanelefebvre.com/")!)
                         .foregroundColor(.black)

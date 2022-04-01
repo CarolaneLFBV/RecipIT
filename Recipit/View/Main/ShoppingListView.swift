@@ -14,7 +14,7 @@ struct ShoppingListView: View {
     @State private var addedIngredients = 0
     @State private var didLoad = true
  
-    
+    // Permet d'ajouter des ingrédients
     var searchBar: some View {
         HStack {
             TextField("Ajouter un ingrédient", text: self.$newIngredient)
@@ -24,6 +24,7 @@ struct ShoppingListView: View {
         }
     }
     
+    // Fonction qui ajoute des ingrédients à la liste de course, et sauvegarde la liste
     func addIngredient() {
         shoppingListStorage.shoppinglists.append(ShoppingList(id: String(shoppingListStorage.shoppinglists.count + 1), shoppingItem: newIngredient))
         addedIngredients += 1
@@ -32,6 +33,7 @@ struct ShoppingListView: View {
         self.newIngredient = ""
     }
     
+    // Fonction qui supprime des ingrédients à la liste de course, et sauvegarde la liste
     func deleteItem(at offsets: IndexSet) {
         let index = offsets[offsets.startIndex]
         for i in index..<addedIngredients-1 {
@@ -58,6 +60,7 @@ struct ShoppingListView: View {
                 .navigationBarItems(trailing: EditButton())
             }
         }
+        // Lorsque la vue apparaît, on affiche la sauvegarde de la liste
         .onAppear(perform: {
             if didLoad {
                 addedIngredients = UserDefaults.standard.integer(forKey: "NumberIngredients")
