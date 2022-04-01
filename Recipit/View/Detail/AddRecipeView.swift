@@ -14,20 +14,20 @@ struct AddRecipeView: View {
     @State private var directions: String = ""
     @State private var navigationRecipe = false
     
-    //Recipe added user default
+    // Recipe added user default
     @State var numberRecipesAdded = UserDefaults.standard.integer(forKey: "addedRecipe")
     
-    // Library option
+    // Option librairie
     @State private var image: Image?
     @State private var filterIntensity = 0.5
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @State private var currentImg: UIImage?
 
-    // Saved pic to restore
+    // Sauvegarder la photo pour restauration
     @State private var savedPictures: [String] = UserDefaults.standard.object(forKey: "savedPictures") as? [String] ?? [String]()
     
-    // Function that loads the image
+    // Fonction qui charge les images
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
@@ -42,6 +42,7 @@ struct AddRecipeView: View {
     
     var body: some View {
         NavigationView {
+            // Form permet de garder en groupe différentes sections
             Form {
                 Section(header: Text("Nom de la recette")) {
                     TextField("Recette", text: $name)
@@ -132,6 +133,7 @@ struct AddRecipeView_Previews: PreviewProvider {
     }
 }
 
+// Extension permettant l'ajout et la sauvegarde dans l'application de la recette
 extension AddRecipeView {
     private func saveRecipe() {
         

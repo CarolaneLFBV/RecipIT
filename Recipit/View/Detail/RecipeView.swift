@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Structure permettant de créer des rectangle arrondi
 struct RoundedCorner: Shape {
 
     var radius: CGFloat = .infinity
@@ -18,6 +19,7 @@ struct RoundedCorner: Shape {
     }
 }
 
+// Extension de RoundedCorner
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
@@ -27,17 +29,18 @@ extension View {
 struct RecipeView: View {
     @State var recipe: Recipe
     
+    // Fonction permettant d'ajouter des recettes en favoris
     func addToFavorites() {
         recipe.isFavorite.toggle()
         UserDefaults.standard.set(recipe.isFavorite, forKey: "\(recipe.name)isFavorite")
     }
     
-
     var body: some View {
         ScrollView {
+            //le paramètres spacing permet à la vue de ne pas avoir de marge (padding)
             VStack(spacing: 0){
                 ZStack() {
-                    recipe.image?
+                    recipe.image?       //image? permet de définir si une image existe, dans le cas contraire, elle sortira nil
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(height: 300)
@@ -70,7 +73,8 @@ struct RecipeView: View {
                         Button() {
                             addToFavorites()
                         } label:{
-                            /*recipe.isFavorite ? "Retirer des favoris" : "Ajouter au favoris" , */
+                            //recipe.isFavorite ? "Retirer des favoris" : "Ajouter au favoris"
+                            // Opération ternaire permettant de modifier si la recette est dans les favoris ou non (colorit l'icône)
                             Label(recipe.isFavorite ? "Favoris" : "Favoris" , systemImage: recipe.isFavorite ? "star.fill" : "star")
                                 .foregroundColor(.orange)
                                 .font(.system(size: 20,
@@ -86,7 +90,7 @@ struct RecipeView: View {
                 .shadow(color: .black, radius: 15, x: 0, y: 12)
                 
                 
-                
+                // le paramètre leading permet de suivre la vue de son parent (VStack)
                 VStack(alignment: .leading, spacing: 30) {
                     if !recipe.ingredients.isEmpty {
                         VStack(alignment: .leading, spacing: 15) {
@@ -118,6 +122,9 @@ struct RecipeView: View {
             //.background(Color.orange)
         }
         .navigationViewStyle(.stack)
+        
+        // De base, la vue s'arrête uniquement sur une vue complète, et les bords sont donc pris en compte, ce qui rend
+        // l'application pas agréable à la vue.
         .ignoresSafeArea(.container, edges: .top)
         
     }
