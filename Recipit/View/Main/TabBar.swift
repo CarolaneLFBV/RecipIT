@@ -5,13 +5,6 @@
 //  Created by Carolane on 07/02/2022.
 //
 
-/* Incorporation d'une barre de naviguation avec différentes parties :
- - Page principale
- - Page catégories
- - Page nouvelle recette
- - Page recettes favorites
- - Page paramètres */
-
 import SwiftUI
 
 struct TabBar: View {
