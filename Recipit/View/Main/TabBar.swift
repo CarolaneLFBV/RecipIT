@@ -1,16 +1,8 @@
-//
-//  TabBar.swift
-//  RecipIT
-//
-//  Created by Carolane on 07/02/2022.
-//
-
 import SwiftUI
 
 struct TabBar: View {
     @State private var selectedIndex = 0
     
-    // Liste d'icônes
     let icons = [
     "house",
     "plus",
@@ -18,9 +10,7 @@ struct TabBar: View {
     ]
     
     var body: some View {
-        // VStack est une vue permettant d'aligner ses enfants sur la verticale
         VStack {
-            // ZStack est une vue permettant de superposer ses enfants
             ZStack {
                 switch selectedIndex {
                 case 0:
@@ -43,15 +33,12 @@ struct TabBar: View {
             Spacer()
             
             Divider()
-            
-            // HStack est une vue permettant d'aligner ses enfants sur l'horizontale
             HStack {
                 ForEach(0..<3, id: \.self) { number in
                     Spacer()
                     Button(action: {
                         self.selectedIndex = number
                     }, label: {
-                        // Modification du bouton au milieu de la barre de naviguation
                         if number == 1 {
                             Image(systemName: icons[number])
                                 .font(.system(size: 25,

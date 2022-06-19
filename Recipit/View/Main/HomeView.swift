@@ -13,11 +13,9 @@ struct HomeView: View {
     @EnvironmentObject var recipeViewModel: RecipeViewModel
     @State private var showSettings = false
     
-    
     var body: some View {
         // NavigationView permet de naviguer sur l'application
         NavigationView {
-            
             // Permet de Scroller
             ScrollView {
                 RecipeList(recipes: recipeViewModel.recipes)    // Ajout de la liste des recettes
@@ -35,12 +33,9 @@ struct HomeView: View {
                     }.foregroundColor(.orange)
                     // .[paramètre] permet d'ajouter des paramètres (forme, couleur, etc.) au parent (ici, le bouton)
                 }
-
             })
-            
         }
         .navigationViewStyle(.stack) // Permet d'éviter des bugs avec la console
-        
     }
 }
 

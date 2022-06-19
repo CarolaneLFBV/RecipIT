@@ -132,6 +132,7 @@ struct RecipeView: View {
 
 struct RecipeView_Previews: PreviewProvider {
     static var previews: some View {
+        //Permet d'ajouter une liste en exemple
         RecipeView(recipe: Recipe.allRecipe[0])
     }
 }

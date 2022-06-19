@@ -28,7 +28,7 @@ struct RecipeList: View {
                 Text("Favoris")
             }
             
-            // LazyVGrid = vertical grid that adjusts depends on the number of items
+            // LazyVGrid = grille verticale qui ajuste les lignes en fonction du nombre d'items
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 160))], spacing: 15) {
                 ForEach(recipes) { recipe in
                     if !self.showingFavorites || recipe.isFavorite == true {
