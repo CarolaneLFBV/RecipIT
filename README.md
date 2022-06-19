@@ -18,8 +18,7 @@ This app also allows the user to naviguate through a shopping list where he can 
 
 # Features
 ## ADDED
-- Notification Push
-- SettingsView (links, notifications..)
+- Launching Screen
 
 ## UPDATED
 - App's UI
@@ -30,5 +29,5 @@ This app also allows the user to naviguate through a shopping list where he can 
 
 ## NEED TO BE ADDED
 - Add a NutriScore Scan in the application
-- Launching Screen
+
 
