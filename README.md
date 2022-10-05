@@ -1,3 +1,4 @@
+# RecipIT is currently getting a new fresh start ! WORK IN PROGRESS 💻
 # RecipIT
 
 Recip'IT is an iOS application developed by myself. 
